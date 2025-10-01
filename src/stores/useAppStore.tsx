@@ -1,20 +1,2 @@
-// src/store/configureStore.ts
-import { configureStore } from "@reduxjs/toolkit";
-import sessionReducer from "./slices/sessionSlice";
-import tripsReducer from "./slices/tripsSlice";
-import { useAppStore } from "./stores/AppStore";
-
-
-export const store = configureStore({
-  reducer: {
-    session: sessionReducer,
-    trips: tripsReducer,
-  },
-  devTools: import.meta.env.MODE === "development",
-});
-
-// ✅ Inferred types for the whole app
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-
-export default store;
+// This file appears to be a duplicate of configureStore.tsx and has been cleared to avoid confusion and errors.
+// It contained broken imports and circular dependencies.

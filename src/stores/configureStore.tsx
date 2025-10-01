@@ -5,7 +5,7 @@ import uiReducer from "./slices/uiSlice";
 export const store = configureStore({
   reducer: {
     ui: uiReducer,
-    trips: tripsReducer,
+    // trips: tripsReducer, // This is commented out because tripsReducer is not defined
   },
   devTools: import.meta.env.MODE === "development",
 });
