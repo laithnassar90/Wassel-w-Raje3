@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export function itReturnsValidType (action, type) {
   it('returns valid type', () => {
     expect(action).to.contain.all.keys(['type'])
@@ -11,3 +12,18 @@ export function itReturnsValidObject (action, objectName, object) {
     expect(action[objectName]).to.eql(object)
   })
 }
+=======
+export function itReturnsValidType (action, type) {
+  it('returns valid type', () => {
+    expect(action).to.contain.all.keys(['type'])
+    expect(action.type).to.eql(type)
+  })
+}
+
+export function itReturnsValidObject (action, objectName, object) {
+  it('returns object with valid data', () => {
+    expect(action).to.contain.all.keys([objectName])
+    expect(action[objectName]).to.eql(object)
+  })
+}
+>>>>>>> 6090fceb (Initial commit of all components)
