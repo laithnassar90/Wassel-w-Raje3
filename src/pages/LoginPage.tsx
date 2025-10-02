@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '@/contexts/AuthContext';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Eye, EyeOff } from 'lucide-react';
+import { loginSchema, type LoginForm } from '@/lib/validations';
 
 const LoginPage: React.FC = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
   const { login, isLoading } = useAuth();
   const navigate = useNavigate();
+  
+  const { register, handleSubmit, formState: { errors }, setError } = useForm<LoginForm>({
+    resolver: zodResolver(loginSchema)
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    
-    const success = await login(formData.email, formData.password);
+  const onSubmit = async (data: LoginForm) => {
+    const success = await login(data.email, data.password);
     if (success) {
       navigate('/dashboard');
     } else {
-      setError('Invalid email or password');
+      setError('root', { message: 'Invalid email or password' });
     }
   };
 
@@ -41,17 +43,18 @@ const LoginPage: React.FC = () => {
           <p className="text-gray-600">Sign in to your Wassel account</p>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="demo@wassel.com"
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-                required
+                {...register('email')}
               />
+              {errors.email && (
+                <p className="text-red-600 text-sm">{errors.email.message}</p>
+              )}
             </div>
             
             <div className="space-y-2">
@@ -61,9 +64,7 @@ const LoginPage: React.FC = () => {
                   id="password"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="demo123"
-                  value={formData.password}
-                  onChange={(e) => setFormData({...formData, password: e.target.value})}
-                  required
+                  {...register('password')}
                 />
                 <button
                   type="button"
@@ -73,10 +74,13 @@ const LoginPage: React.FC = () => {
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
+              {errors.password && (
+                <p className="text-red-600 text-sm">{errors.password.message}</p>
+              )}
             </div>
 
-            {error && (
-              <div className="text-red-600 text-sm bg-red-50 p-2 rounded">{error}</div>
+            {errors.root && (
+              <div className="text-red-600 text-sm bg-red-50 p-2 rounded">{errors.root.message}</div>
             )}
 
             <Button type="submit" className="w-full" disabled={isLoading}>
