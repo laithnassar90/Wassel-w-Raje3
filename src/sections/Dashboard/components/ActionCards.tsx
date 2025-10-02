@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const ActionCards: React.FC = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
       <div className="bg-white border border-gray-200 rounded-xl shadow hover:shadow-md transition-shadow">
@@ -19,7 +22,10 @@ export const ActionCards: React.FC = () => {
               </h3>
               <p className="text-gray-400">Search for available rides</p>
             </div>
-            <button className="ml-4 px-4 py-2 h-9 bg-cyan-700 text-white text-sm font-medium rounded-lg shadow hover:bg-cyan-700/90 transition-colors">
+            <button 
+              onClick={() => navigate('/find-ride')}
+              className="ml-4 px-4 py-2 h-9 bg-cyan-700 text-white text-sm font-medium rounded-lg shadow hover:bg-cyan-700/90 transition-colors"
+            >
               Get Started
             </button>
           </div>
@@ -42,7 +48,10 @@ export const ActionCards: React.FC = () => {
               </h3>
               <p className="text-gray-400">Share your journey</p>
             </div>
-            <button className="ml-4 px-4 py-2 h-9 bg-cyan-700 text-white text-sm font-medium rounded-lg shadow hover:bg-cyan-700/90 transition-colors">
+            <button 
+              onClick={() => navigate('/offer-ride')}
+              className="ml-4 px-4 py-2 h-9 bg-cyan-700 text-white text-sm font-medium rounded-lg shadow hover:bg-cyan-700/90 transition-colors"
+            >
               Get Started
             </button>
           </div>
