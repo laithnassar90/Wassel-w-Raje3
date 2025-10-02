@@ -1,18 +1,36 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/ui/button/button";
 
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user, logout, loading } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Navbar */}
       <nav className="bg-white shadow-md p-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-indigo-600">Wassel</h1>
-        <div className="flex gap-4">
-          <Link to="/">Home</Link>
-          <Link to="/rides">Rides</Link>
-          <Link to="/sessions">Sessions</Link>
-          <Link to="/cars">Cars</Link>
-          <Link to="/notifications">Notifications</Link>
+        <Link to="/" className="text-xl font-bold text-indigo-600">Wassel</Link>
+        <div className="flex items-center gap-4">
+          <Link to="/find-ride">Find a Ride</Link>
+          <Link to="/offer-ride">Offer a Ride</Link>
+          {loading ? (
+            <div>Loading...</div>
+          ) : user ? (
+            <>
+              <Link to="/dashboard">Dashboard</Link>
+              <span>Welcome, {user.name}</span>
+              <Button onClick={handleLogout} size="sm">Logout</Button>
+            </>
+          ) : (
+            <Link to="/sessions">Login</Link>
+          )}
         </div>
       </nav>
 

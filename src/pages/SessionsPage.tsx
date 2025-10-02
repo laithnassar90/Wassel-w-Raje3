@@ -1,10 +1,13 @@
 import React from "react";
+import { NewLogin } from "../sessions/components/new-login/NewLogin";
 
 const SessionsPage: React.FC = () => {
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold">Sessions</h1>
-      <p>Manage user sessions and related activities.</p>
+    <div className="p-6 flex flex-col items-center">
+      <h1 className="text-2xl font-bold mb-4">Login</h1>
+      <div className="w-full max-w-sm">
+        <NewLogin />
+      </div>
     </div>
   );
 };

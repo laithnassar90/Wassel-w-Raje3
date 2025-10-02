@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./hooks/useAuth";
 
 // Layout
 import MainLayout from "./layout/MainLayout";
@@ -24,27 +25,29 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 const App: React.FC = () => {
   return (
     <Router>
-      <MainLayout>
-        {/* Suspense fallback while lazy pages load */}
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/rides" element={<RidesPage />} />
-            <Route path="/sessions" element={<SessionsPage />} />
-            <Route path="/notifications" element={<NotificationsPage />} />
-            <Route path="/cars" element={<CarsPage />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/payments" element={<Payments />} />
-            <Route path="/offer-ride" element={<OfferRide />} />
-            <Route path="/my-tips" element={<MyTips />} />
-            <Route path="/messages" element={<Messages />} />
-            <Route path="/find-ride" element={<Findride />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-      </MainLayout>
+      <AuthProvider>
+        <MainLayout>
+          {/* Suspense fallback while lazy pages load */}
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/rides" element={<RidesPage />} />
+              <Route path="/sessions" element={<SessionsPage />} />
+              <Route path="/notifications" element={<NotificationsPage />} />
+              <Route path="/cars" element={<CarsPage />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/payments" element={<Payments />} />
+              <Route path="/offer-ride" element={<OfferRide />} />
+              <Route path="/my-tips" element={<MyTips />} />
+              <Route path="/messages" element={<Messages />} />
+              <Route path="/find-ride" element={<Findride />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </MainLayout>
+      </AuthProvider>
     </Router>
   );
 };
