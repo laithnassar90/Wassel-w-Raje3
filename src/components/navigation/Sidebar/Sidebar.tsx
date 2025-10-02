@@ -4,12 +4,10 @@ import { SidebarFooter } from "@/components/navigation/Sidebar/components/Sideba
 
 export const Sidebar = () => {
   return (
-    <div className="fixed bg-white box-border caret-transparent h-full min-h-0 min-w-0 translate-x-[-100.0%] w-64 z-50 border-gray-300 border-r border-solid left-0 top-0 md:static md:min-h-[auto] md:min-w-[auto] md:transform-none md:z-auto">
-      <div className="box-border caret-transparent flex flex-col h-full">
-        <SidebarHeader />
-        <SidebarNavigation />
-        <SidebarFooter />
-      </div>
+    <div className="hidden md:flex md:flex-col bg-white w-64 h-screen border-r border-gray-300">
+      <SidebarHeader />
+      <SidebarNavigation />
+      <SidebarFooter />
     </div>
   );
 };

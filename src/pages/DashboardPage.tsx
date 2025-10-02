@@ -2,7 +2,7 @@ import { WelcomeSection, StatsCards, ActionCards, RecentActivity } from "@/secti
 
 export const Dashboard = () => {
   return (
-    <main className="box-border caret-transparent basis-[0%] grow overflow-auto p-4 space-y-6">
+    <main className="flex-1 overflow-auto p-4 space-y-6 min-h-screen">
       <WelcomeSection />
       <StatsCards />
       <ActionCards />
