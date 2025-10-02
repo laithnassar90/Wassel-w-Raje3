@@ -1,12 +1,18 @@
+import { ReactNode } from "react";
 import { Sidebar } from "@/components/navigation/Sidebar";
-import { MainContent } from "@/components/layouts/MainContent";
 
-export const MainLayout = () => {
+interface MainLayoutProps {
+  children: ReactNode;
+}
+
+export const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <div className="min-h-screen bg-white">
       <div className="flex min-h-screen">
         <Sidebar />
-        <MainContent />
+        <main className="flex-1 p-6">
+          {children}
+        </main>
       </div>
       <div
         role="region"
