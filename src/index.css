@@ -1,5 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --wassel-teal: #20b2aa;
+    --wassel-gray: #6b7280;
+    --wassel-dark: #1f2937;
+  }
+}
+
+@layer components {
+  .wassel-button-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md transition-colors;
+  }
+  
+  .text-wassel-teal {
+    color: var(--wassel-teal);
+  }
+  
+  .text-wassel-gray {
+    color: var(--wassel-gray);
+  }
+  
+  .bg-wassel-teal {
+    background-color: var(--wassel-teal);
+  }
+}
