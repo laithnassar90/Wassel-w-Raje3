@@ -1,13 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
 import uiReducer from "./slices/uiSlice";
- 
 
 export const store = configureStore({
   reducer: {
     ui: uiReducer,
-    trips: tripsReducer,
   },
   devTools: import.meta.env.MODE === "development",
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST']
+      }
+    })
 });
 
 // ✅ Types for typed hooks

@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
+import { ReactNode, memo } from "react";
 import { Sidebar } from "@/components/navigation/Sidebar";
 
 interface MainLayoutProps {
   children: ReactNode;
 }
 
-export const MainLayout = ({ children }: MainLayoutProps) => {
+export const MainLayout = memo(({ children }: MainLayoutProps) => {
   return (
     <div className="min-h-screen bg-white">
       <div className="flex min-h-screen">
@@ -23,4 +23,4 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       </div>
     </div>
   );
-};
+});
