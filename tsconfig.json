@@ -1,43 +1,11 @@
 {
-  "compilerOptions": {
-    // Target and Library Settings
-    "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    
-    // Module Resolution
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    
-    // Alias Configuration (CRUCIAL for @/ imports)
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"] 
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
     },
-    
-    // JSX and React
-    "jsx": "react-jsx",
-    "useDefineForClassFields": true,
-    
-    // Type Checking and Consistency
-    "strict": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    
-    // Other Settings
-    "noEmit": true,
-    "allowJs": false,
-    "skipLibCheck": true
-  },
-  "include": ["src"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "**/*.spec.ts",
-    "**/*.spec.tsx"
+    {
+      "path": "./tsconfig.node.json"
+    }
   ]
 }
