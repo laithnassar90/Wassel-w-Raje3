@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const RecentActivity = () => {
   return (
     <div className="text-zinc-800 bg-white shadow-[rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0)_0px_0px_0px_0px,rgba(0,0,0,0.1)_0px_1px_3px_0px,rgba(0,0,0,0.1)_0px_1px_2px_-1px] box-border caret-transparent border border-gray-300 mt-8 rounded-xl border-solid">

@@ -40,6 +40,10 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Wassel Brand Colors
+        "wassel-teal": "var(--wassel-teal)",
+        "wassel-gray": "var(--wassel-gray)",
+        "wassel-dark": "var(--wassel-dark)",
       },
       borderRadius: {
         lg: "var(--radius)",
