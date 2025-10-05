@@ -10,9 +10,13 @@ export const MainLayout = memo(({ children }: MainLayoutProps) => {
     <div className="min-h-screen bg-white">
       <div className="flex min-h-screen">
         <Sidebar />
+<<<<<<< HEAD
         <main className="flex-1 p-6">
           {children}
         </main>
+=======
+        <MainContent />
+>>>>>>> 8f136104 (Wassel r002)
       </div>
       <div
         role="region"
