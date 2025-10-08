@@ -1,6 +1,7 @@
-export { default as WelcomeSection } from "./components/WelcomeSection";
-export { default as StatsCards } from "./components/StatsCards";
-export { default as ActionCards } from "./components/ActionCards";
-export { default as EnhancedWelcomeSection } from "./components/EnhancedWelcomeSection";
-export { default as RecentActivity } from "./components/RecentActivity";
-export { default as DashboardSection } from "./DashboardSection";
+// src/sections/Dashboard/index.ts
+
+// Re-export all dashboard components as named exports
+export * from "./components/WelcomeSection";
+export * from "./components/StatsCards";
+export * from "./components/ActionCards";
+export * from "./components/RecentActivity";
