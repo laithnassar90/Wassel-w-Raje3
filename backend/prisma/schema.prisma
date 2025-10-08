@@ -1,0 +1,152 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(cuid())
+  phone       String   @unique
+  name        String
+  email       String?  @unique
+  avatar      String?
+  isDriver    Boolean  @default(false)
+  zakkaPoints Int      @default(0)
+  level       String   @default("Bronze")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  ridesAsRider   Ride[] @relation("RiderRides")
+  ridesAsDriver  Ride[] @relation("DriverRides")
+  zakkaEarnings  ZakkaTransaction[]
+  notifications  Notification[]
+
+  @@map("users")
+}
+
+model Ride {
+  id            String     @id @default(cuid())
+  riderId       String
+  driverId      String?
+  type          RideType   @default(WASSEL)
+  status        RideStatus @default(PENDING)
+  
+  pickupLat     Float
+  pickupLng     Float
+  pickupAddress String
+  destLat       Float
+  destLng       Float
+  destAddress   String
+  
+  baseFare      Float
+  finalFare     Float?
+  aiOptimized   Boolean    @default(false)
+  zakkaSeats    Int        @default(0)
+  
+  scheduledAt   DateTime?
+  startedAt     DateTime?
+  completedAt   DateTime?
+  createdAt     DateTime   @default(now())
+  
+  returnRideId  String?    @unique
+  returnRide    Ride?      @relation("ReturnTrip", fields: [returnRideId], references: [id])
+  originalRide  Ride?      @relation("ReturnTrip")
+  
+  rider         User       @relation("RiderRides", fields: [riderId], references: [id])
+  driver        User?      @relation("DriverRides", fields: [driverId], references: [id])
+
+  @@map("rides")
+}
+
+model BusRoute {
+  id          String @id @default(cuid())
+  routeNumber String @unique
+  routeName   String
+  startPoint  String
+  endPoint    String
+  isActive    Boolean @default(true)
+  
+  stops       BusStop[]
+  schedules   BusSchedule[]
+
+  @@map("bus_routes")
+}
+
+model BusStop {
+  id        String  @id @default(cuid())
+  name      String
+  nameAr    String
+  lat       Float
+  lng       Float
+  routeId   String
+  sequence  Int
+  
+  route     BusRoute @relation(fields: [routeId], references: [id])
+  schedules BusSchedule[]
+
+  @@map("bus_stops")
+}
+
+model BusSchedule {
+  id          String   @id @default(cuid())
+  routeId     String
+  stopId      String
+  arrivalTime String
+  dayOfWeek   Int
+  isActive    Boolean  @default(true)
+  
+  route       BusRoute @relation(fields: [routeId], references: [id])
+  stop        BusStop  @relation(fields: [stopId], references: [id])
+
+  @@map("bus_schedules")
+}
+
+model ZakkaTransaction {
+  id          String            @id @default(cuid())
+  userId      String
+  type        ZakkaType
+  points      Int
+  description String
+  rideId      String?
+  createdAt   DateTime          @default(now())
+  
+  user        User              @relation(fields: [userId], references: [id])
+
+  @@map("zakka_transactions")
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  type      String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("notifications")
+}
+
+enum RideType {
+  WASSEL
+  RAJE3
+}
+
+enum RideStatus {
+  PENDING
+  MATCHED
+  STARTED
+  COMPLETED
+  CANCELLED
+}
+
+enum ZakkaType {
+  EARNED
+  REDEEMED
+  BONUS
+}
