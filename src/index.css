@@ -6,53 +6,50 @@
 
 @layer base {
   :root {
-    --wassel-teal: #20b2aa;
-    --wassel-gray: #6b7280;
-    --wassel-dark: #1f2937;
+    /* Wassel Brand Colors - 60-30-10 Rule */
+    --primary: 180 100% 25.1%;        /* #008080 - Teal (60% usage) */
+    --primary-foreground: 0 0% 100%;  /* #ffffff */
+    --secondary: 88 25% 39.2%;        /* #607D4B - Sage Green (30% usage) */
+    --secondary-foreground: 0 0% 100%; /* #ffffff */
+    --accent: 330 100% 26.7%;         /* #880044 - Maroon (10% usage) */
+    --accent-foreground: 0 0% 100%;   /* #ffffff */
     
-    /* FRONTIER BY ANIMA Design System */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 14.5%;         /* Near black */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 14.5%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 174 100% 41%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 84% 4.9%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 14.5%;
+    --muted: 0 0% 96.1%;              /* #f5f5f5 */
+    --muted-foreground: 220 8.9% 46.1%; /* #6b7280 */
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 174 100% 41%;
-    --radius: 0.5rem;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 0% / 0.1;          /* rgba(0,0,0,0.1) */
+    --input: 0 0% 0% / 0.1;
+    --ring: 180 100% 25.1%;           /* Primary color */
+    --radius: 0.75rem;                /* 12px */
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --background: 222.2 47.4% 11.2%;  /* #0f172a - Slate 900 */
+    --foreground: 210 40% 98%;        /* #f8fafc - Slate 50 */
+    --card: 217.2 32.6% 17.5%;        /* #1e293b - Slate 800 */
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 217.2 32.6% 17.5%;
     --popover-foreground: 210 40% 98%;
-    --primary: 174 100% 41%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --primary: 180 100% 25.1%;        /* #008080 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 88 25% 39.2%;        /* #607D4B */
+    --secondary-foreground: 0 0% 100%;
+    --accent: 330 100% 26.7%;         /* #880044 */
+    --accent-foreground: 0 0% 100%;
+    --muted: 215.4 16.3% 26.9%;       /* #334155 - Slate 700 */
+    --muted-foreground: 217.9 10.6% 64.9%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 174 100% 41%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 100% / 0.1;        /* rgba(255,255,255,0.1) */
+    --input: 0 0% 100% / 0.1;
+    --ring: 180 100% 25.1%;
   }
 }
 
@@ -66,21 +63,17 @@
 }
 
 @layer components {
-  /* Wassel Original Components */
+  /* Wassel Brand Components - 60-30-10 Rule */
   .wassel-button-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md transition-colors;
+    @apply bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-4 py-2 rounded-lg transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2;
   }
   
-  .text-wassel-teal {
-    color: var(--wassel-teal);
+  .wassel-button-secondary {
+    @apply bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium px-4 py-2 rounded-lg transition-colors focus:ring-2 focus:ring-secondary focus:ring-offset-2;
   }
   
-  .text-wassel-gray {
-    color: var(--wassel-gray);
-  }
-  
-  .bg-wassel-teal {
-    background-color: var(--wassel-teal);
+  .wassel-button-accent {
+    @apply bg-accent hover:bg-accent/90 text-accent-foreground font-medium px-4 py-2 rounded-lg transition-colors focus:ring-2 focus:ring-accent focus:ring-offset-2;
   }
 
   /* FRONTIER BY ANIMA Components */
@@ -93,11 +86,15 @@
   }
   
   .anima-button-primary {
-    @apply anima-button bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2;
+    @apply anima-button bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 focus:ring-2 focus:ring-primary focus:ring-offset-2;
   }
   
   .anima-button-secondary {
-    @apply anima-button bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2;
+    @apply anima-button bg-secondary text-secondary-foreground hover:bg-secondary/90 h-10 px-4 py-2 focus:ring-2 focus:ring-secondary focus:ring-offset-2;
+  }
+  
+  .anima-button-accent {
+    @apply anima-button bg-accent text-accent-foreground hover:bg-accent/90 h-10 px-4 py-2 focus:ring-2 focus:ring-accent focus:ring-offset-2;
   }
   
   .anima-input {

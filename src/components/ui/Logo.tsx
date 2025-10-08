@@ -1,23 +1,31 @@
 interface LogoProps {
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  showText?: boolean;
   className?: string;
 }
 
-export const Logo = ({ size = 'md', className = '' }: LogoProps) => {
+export const Logo = ({ size = 'sm', showText = true, className = '' }: LogoProps) => {
   const sizeClasses = {
-    sm: 'h-6 w-6',
-    md: 'h-8 w-8', 
-    lg: 'h-12 w-12',
-    xl: 'h-16 w-16'
+    xs: 'h-7',
+    sm: 'h-8',
+    md: 'h-10',
+    lg: 'h-12',
+    xl: 'h-16'
   };
 
   return (
-    <div className={`${sizeClasses[size]} overflow-hidden rounded-xl bg-white p-1 ${className}`}>
+    <div className={`flex items-center gap-2.5 ${className}`}>
       <img
         src="https://c.animaapp.com/mfzum9yxwZ0GbV/img/logo-wassel.png"
-        alt="Wassel Logo"
-        className="h-full w-full object-contain"
+        alt="Wassel"
+        className={`${sizeClasses[size]} w-auto`}
       />
+      {showText && (
+        <div className="flex flex-col gap-0.5">
+          <h3 className="text-base font-medium text-primary leading-none">Wassel</h3>
+          <p className="text-xs text-muted-foreground leading-none">واصل</p>
+        </div>
+      )}
     </div>
   );
-};
+}
