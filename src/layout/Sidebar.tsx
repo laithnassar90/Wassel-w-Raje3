@@ -11,9 +11,10 @@ import {
   LogOut,
   X
 } from 'lucide-react';
-import { Button } from '../ui/button'; // use relative path
-import { Separator } from '../ui/separator'; // use relative path
-import { useAppStore } from '../stores/AppStore'; // use relative path
+import { Button } from '../ui/button';
+import { Separator } from '../ui/separator';
+import { useAppStore } from '../stores/AppStore';
+import { Logo } from '@/components/ui/Logo';
 
 const navigationItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -54,24 +55,11 @@ export function Sidebar() {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-border">
-            <div className="flex items-center space-x-3">
-              <div className="w-14 h-14 rounded-xl overflow-hidden bg-white p-2 shadow-sm border border-gray-100">
-                <img 
-                  src="https://c.animaapp.com/mfz4nq9yxAlLvz/img/logo-wassel_1.png" 
-                  alt="Wassel Logo" 
-                  className="w-full h-full object-contain filter contrast-125"
-                  style={{ imageRendering: 'crisp-edges' }}
-                />
-              </div>
-              <div>
-                <h1 className="font-headline font-bold text-xl wassel-text-gradient">Wassel</h1>
-                <p className="text-sm text-muted-foreground arabic font-arabic">واصل</p>
-              </div>
-            </div>
+            <Logo size="sm" />
             <Button
               variant="ghost"
               size="sm"
-              className="lg:hidden bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground"
+              className="lg:hidden"
               onClick={() => setSidebarOpen(false)}
             >
               <X className="h-5 w-5" />
@@ -88,13 +76,7 @@ export function Sidebar() {
                 <Button
                   key={item.id}
                   variant={isActive ? 'default' : 'ghost'}
-                  className={`
-                    w-full justify-start gap-3 h-12 text-left font-normal
-                    ${isActive 
-                      ? 'bg-wassel-teal text-white hover:bg-wassel-teal/90'
-                      : 'bg-transparent text-foreground hover:bg-wassel-light hover:text-wassel-teal'
-                    }
-                  `}
+                  className="w-full justify-start gap-3 h-12 text-left font-normal"
                   onClick={() => handleNavigation(item.id)}
                 >
                   <Icon className="h-5 w-5" />
@@ -114,13 +96,7 @@ export function Sidebar() {
                 <Button
                   key={item.id}
                   variant={isActive ? 'default' : 'ghost'}
-                  className={`
-                    w-full justify-start gap-3 h-12 text-left font-normal
-                    ${isActive 
-                      ? 'bg-wassel-teal text-white hover:bg-wassel-teal/90'
-                      : 'bg-transparent text-foreground hover:bg-wassel-light hover:text-wassel-teal'
-                    }
-                  `}
+                  className="w-full justify-start gap-3 h-12 text-left font-normal"
                   onClick={() => handleNavigation(item.id)}
                 >
                   <Icon className="h-5 w-5" />
@@ -133,7 +109,7 @@ export function Sidebar() {
 
             <Button
               variant="ghost"
-              className="w-full justify-start gap-3 h-12 text-left font-normal bg-transparent text-destructive hover:bg-destructive/10 hover:text-destructive"
+              className="w-full justify-start gap-3 h-12 text-left font-normal text-destructive hover:bg-destructive/10 hover:text-destructive"
             >
               <LogOut className="h-5 w-5" />
               Sign Out
