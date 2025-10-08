@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { MainLayout } from "./components/layouts/MainLayout";
-import { ToastProvider } from "./components/ui/toast.tsx";
+import { ToastProvider } from "./components/ui/toast";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const FindRide = lazy(() => import("./pages/FindridePage").then(m => ({ default: m.FindRide })));
