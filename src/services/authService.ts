@@ -1,66 +1,68 @@
-// Authentication Service
-export interface User {
+interface User {
   id: string;
-  name: string;
   email: string;
+  name: string;
+  phone?: string;
 }
 
-export interface AuthResponse {
-  user: User;
-  token: string;
+interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+interface RegisterData extends LoginCredentials {
+  name: string;
+  phone?: string;
 }
 
 class AuthService {
-  private tokenKey = 'wassel_token';
-  private userKey = 'wassel_user';
+  private user: User | null = null;
 
-  async login(email: string, password: string): Promise<AuthResponse> {
-    // Mock API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const response = {
-      user: { id: '1', name: 'John Doe', email },
-      token: 'mock-jwt-token'
+  async login(credentials: LoginCredentials): Promise<User> {
+    // Mock implementation - replace with real API
+    const mockUser: User = {
+      id: '1',
+      email: credentials.email,
+      name: 'John Doe',
+      phone: '+962791234567'
     };
     
-    this.setAuth(response);
-    return response;
+    this.user = mockUser;
+    localStorage.setItem('user', JSON.stringify(mockUser));
+    return mockUser;
   }
 
-  async register(userData: { name: string; email: string; password: string }): Promise<AuthResponse> {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const response = {
-      user: { id: Date.now().toString(), name: userData.name, email: userData.email },
-      token: 'mock-jwt-token'
+  async register(data: RegisterData): Promise<User> {
+    // Mock implementation - replace with real API
+    const newUser: User = {
+      id: Date.now().toString(),
+      email: data.email,
+      name: data.name,
+      phone: data.phone
     };
     
-    this.setAuth(response);
-    return response;
+    this.user = newUser;
+    localStorage.setItem('user', JSON.stringify(newUser));
+    return newUser;
   }
 
   logout(): void {
-    localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem(this.userKey);
+    this.user = null;
+    localStorage.removeItem('user');
   }
 
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
-  }
-
-  getUser(): User | null {
-    const user = localStorage.getItem(this.userKey);
-    return user ? JSON.parse(user) : null;
+  getCurrentUser(): User | null {
+    if (!this.user) {
+      const stored = localStorage.getItem('user');
+      this.user = stored ? JSON.parse(stored) : null;
+    }
+    return this.user;
   }
 
   isAuthenticated(): boolean {
-    return !!this.getToken();
-  }
-
-  private setAuth(auth: AuthResponse): void {
-    localStorage.setItem(this.tokenKey, auth.token);
-    localStorage.setItem(this.userKey, JSON.stringify(auth.user));
+    return this.getCurrentUser() !== null;
   }
 }
 
 export const authService = new AuthService();
+export type { User, LoginCredentials, RegisterData };
