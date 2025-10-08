@@ -1,14 +1,9 @@
-<<<<<<< HEAD
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
-  plugins: [react({
-    babel: {
-      plugins: [['babel-plugin-react-compiler', {}]]
-    }
-  })],
+  plugins: [react()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -36,23 +31,3 @@ export default defineConfig({
     include: ['react', 'react-dom', 'react-router-dom']
   }
 })
-=======
-  import { defineConfig } from 'vite'
-  import react from '@vitejs/plugin-react'
-  import { fileURLToPath, URL } from 'node:url'
-
-  export default defineConfig({
-    plugins: [react()],
-    resolve: {
-      alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url))
-      }
-    },
-    build: {
-      outDir: 'dist'
-    },
-    server: {
-      port: 3000
-    }
-  })
->>>>>>> 8f136104 (Wassel r002)
