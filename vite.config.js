@@ -16,7 +16,11 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom'],
           router: ['react-router-dom'],
-          ui: ['@radix-ui/react-avatar', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu']
+          ui: [
+            '@radix-ui/react-avatar',
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu'
+          ]
         }
       }
     },
@@ -25,7 +29,10 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    hmr: true
+    hmr: true,
+    allowedHosts: [
+      'wassel-r001-domain-based-structure.onrender.com' // ✅ allow this host
+    ]
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom']

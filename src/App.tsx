@@ -4,9 +4,9 @@ import { MainLayout } from "./components/layouts/MainLayout";
 import { ToastProvider } from "./components/ui/toast";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
-const FindRide = lazy(() => import("./pages/FindridePage").then(m => ({ default: m.FindRide })));
+const FindRide = lazy(() => import("./pages/FindridePage"));
 const OfferRidePage = lazy(() => import("./pages/OfferRidePage"));
-const Dashboard = lazy(() => import("./pages/DashboardPage").then(m => ({ default: m.Dashboard })));
+const Dashboard = lazy(() => import("./pages/DashboardPage"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
