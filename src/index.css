@@ -6,16 +6,16 @@
 
 @layer base {
   :root {
-    /* Wassel Brand Colors - 60-30-10 Rule */
-    --primary: 180 100% 25.1%;        /* #008080 - Teal (60% usage) */
-    --primary-foreground: 0 0% 100%;  /* #ffffff */
-    --secondary: 88 25% 39.2%;        /* #607D4B - Sage Green (30% usage) */
-    --secondary-foreground: 0 0% 100%; /* #ffffff */
-    --accent: 330 100% 26.7%;         /* #880044 - Maroon (10% usage) */
-    --accent-foreground: 0 0% 100%;   /* #ffffff */
-    
+    /* Figma site tokens (normalized to HSL variables) */
+    --primary: 180 100% 25.1%;        /* teal */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 88 25% 39.2%;        /* #607d4b */
+    --secondary-foreground: 0 0% 100%;
+    --accent: 330 100% 26.7%;         /* #804 -> #880044 */
+    --accent-foreground: 0 0% 100%;
+
     --background: 0 0% 100%;
-    --foreground: 0 0% 14.5%;         /* Near black */
+    --foreground: 0 0% 14.5%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 14.5%;
     --popover: 0 0% 100%;
@@ -24,32 +24,39 @@
     --muted-foreground: 220 8.9% 46.1%; /* #6b7280 */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 0% / 0.1;          /* rgba(0,0,0,0.1) */
-    --input: 0 0% 0% / 0.1;
-    --ring: 180 100% 25.1%;           /* Primary color */
-    --radius: 0.75rem;                /* 12px */
+    --border: 0 0% 0% / 0.1;           /* #0000001a */
+    --input: 0 0% 0% / 0;              /* transparent per figma */
+    --input-background: 210 20% 98%;   /* #f9fafb */
+    --switch-background: 220 9% 72%;   /* #d1d5db */
+    --ring: 180 100% 25.1%;            /* teal */
+    --radius: 0.75rem;
+
+    /* Brand convenience aliases used by Tailwind config */
+    --wassel-teal: #008080;
+    --wassel-gray: #6b7280;
+    --wassel-dark: #111827;
   }
 
   .dark {
-    --background: 222.2 47.4% 11.2%;  /* #0f172a - Slate 900 */
-    --foreground: 210 40% 98%;        /* #f8fafc - Slate 50 */
-    --card: 217.2 32.6% 17.5%;        /* #1e293b - Slate 800 */
+    --background: 222.2 47.4% 11.2%;  /* #0f172a */
+    --foreground: 210 40% 98%;        /* #f8fafc */
+    --card: 217.2 32.6% 17.5%;        /* #1e293b */
     --card-foreground: 210 40% 98%;
     --popover: 217.2 32.6% 17.5%;
     --popover-foreground: 210 40% 98%;
-    --primary: 180 100% 25.1%;        /* #008080 */
+    --primary: 182 100% 32.5%;        /* #00a6a6 */
     --primary-foreground: 0 0% 100%;
-    --secondary: 88 25% 39.2%;        /* #607D4B */
+    --secondary: 96 24% 49%;          /* #7a9b5e */
     --secondary-foreground: 0 0% 100%;
-    --accent: 330 100% 26.7%;         /* #880044 */
+    --accent: 328 100% 33.1%;         /* #a8005a */
     --accent-foreground: 0 0% 100%;
-    --muted: 215.4 16.3% 26.9%;       /* #334155 - Slate 700 */
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --destructive: 0 62.8% 30.6%;
+    --muted: 215 20% 31%;             /* #334155 */
+    --muted-foreground: 216 13% 67%;  /* #94a3b8 */
+    --destructive: 0 83.6% 63.3%;     /* #ef4444 */
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 100% / 0.1;        /* rgba(255,255,255,0.1) */
-    --input: 0 0% 100% / 0.1;
-    --ring: 180 100% 25.1%;
+    --border: 0 0% 100% / 0.1;        /* #ffffff1a */
+    --input: 0 0% 100% / 0.05;        /* #ffffff0d */
+    --ring: 182 100% 32.5%;           /* #00a6a6 */
   }
 }
 
