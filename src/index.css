@@ -119,4 +119,24 @@
   .anima-header {
     @apply sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60;
   }
+
+  /* Extra utilities used by pages */
+  .wassel-gradient {
+    @apply bg-gradient-to-r from-primary to-accent;
+  }
+
+  .wassel-text-gradient {
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-wassel-light {
+    background-color: hsl(var(--primary) / 0.08);
+  }
+
+  .bg-wassel-burgundy {
+    background-color: #880044;
+  }
 }

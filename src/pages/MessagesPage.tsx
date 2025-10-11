@@ -196,3 +196,5 @@ export function Messages() {
     </div>
   );
 }
+
+export default Messages;

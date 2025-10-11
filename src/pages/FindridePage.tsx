@@ -131,3 +131,5 @@ export function FindRide() {
     </div>
   );
 }
+
+export default FindRide;
